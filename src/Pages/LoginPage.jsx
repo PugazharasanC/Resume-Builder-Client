@@ -1,27 +1,20 @@
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+
 import { motion } from "framer-motion";
-import axios from "axios";
+
 import atsVector from "../assets/ats-vector.png"; 
-import { useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
-    const navigate = useNavigate();
-  const handleSuccess = async (response) => {
-    //console.log("Login Success:", response);
-    try {
-      const res = await axios.get("http://localhost:5500/auth/google");
-      console.log("API Response:", res.data);
-      navigate("/home");
+  const handleClick = async (response) => {
+ //console.log("Login Success:", response);
+   try{
+ window.location.href = "http://localhost:5500/auth/google";
     } catch (error) {
       console.error("API Call Failed:", error);
     }
   };
 
-  const handleFailure = (error) => {
-    console.log("Login Failed:", error);
-  };
-
   return (
-    <GoogleOAuthProvider clientId="866486045273-307s3pn542qvj0eqsg7bo9rpaoaqovnu.apps.googleusercontent.com">
+   
       <div className="flex h-screen items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -37,11 +30,16 @@ const LoginPage = () => {
             whileTap={{ scale: 0.95 }}
             className="inline-block"
           >
-            <GoogleLogin onSuccess={handleSuccess} onError={handleFailure} />
+            <button onClick={handleClick} className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              Sign In With Google 
+              </span>
+            </button>
+          
           </motion.div>
         </motion.div>
       </div>
-    </GoogleOAuthProvider>
+  
   );
 };
 
