@@ -1,12 +1,16 @@
 import { useContext, useState } from "react";
-import SectionModal from "../components/SectionModal"
+import SectionModal from "../components/SectionModal";
 import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const CreateResume = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const  {user}  = useContext(AuthContext);
-  console.log(user)
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  if (user) {
+    navigate("/");
+  }
   const [sections, setSections] = useState([]);
   const [resumeData, setResumeData] = useState({
     name: `${user.firstName} ${user.lastName}`,
@@ -28,16 +32,16 @@ const CreateResume = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-5xl mx-auto bg-white p-8 shadow-lg rounded-lg">
-
         {/* Back Button */}
         <a href="/dashboard" className="text-blue-600 flex items-center mb-4">
           ← Back to Dashboard
         </a>
 
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Resume Details</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">
+          Resume Details
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
           {/* Left Form */}
           <div>
             <input
@@ -116,7 +120,9 @@ const CreateResume = () => {
 
           {/* Right Preview */}
           <div className="bg-gray-50 p-6 border rounded-lg">
-            <h3 className="text-2xl font-bold text-gray-800">{resumeData.name}</h3>
+            <h3 className="text-2xl font-bold text-gray-800">
+              {resumeData.name}
+            </h3>
             <p className="text-gray-600">{resumeData.jobTitle}</p>
             <hr className="my-3" />
             <p className="text-gray-700">
@@ -128,7 +134,9 @@ const CreateResume = () => {
             {/* Dynamic Sections */}
             {sections.map((section) => (
               <div key={section.id} className="mt-2">
-                <p className="font-semibold text-gray-800">{section.icon} {section.name}</p>
+                <p className="font-semibold text-gray-800">
+                  {section.icon} {section.name}
+                </p>
               </div>
             ))}
           </div>
@@ -144,7 +152,11 @@ const CreateResume = () => {
       </div>
 
       {/* SectionModal Component - Calls the existing modal */}
-      <SectionModal isOpen={showModal} onClose={() => setShowModal(false)} onSelect={addSection} />
+      <SectionModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSelect={addSection}
+      />
     </div>
   );
 };

@@ -22,8 +22,7 @@ const LoginPage = () => {
   };
   const handleLogout = async () => {
     try {
-      // fetch()
-       window.location.href = "http://localhost:5500/auth/logout";
+      window.location.href = "http://localhost:5500/auth/logout";
     } catch (error) {
       console.error("API Call Failed:", error);
     }
