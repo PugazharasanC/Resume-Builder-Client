@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SectionModal from "../components/SectionModal"
+import AuthContext from "../context/AuthContext";
 
 const CreateResume = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const  {user}  = useContext(AuthContext);
+  console.log(user)
   const [sections, setSections] = useState([]);
   const [resumeData, setResumeData] = useState({
-    name: "Your Name",
+    name: `${user.firstName} ${user.lastName}`,
     jobTitle: "",
-    email: "",
+    email: user.email,
     phone: "",
     address: "",
   });
@@ -34,7 +37,7 @@ const CreateResume = () => {
         <h2 className="text-3xl font-bold text-gray-800 mb-6">Resume Details</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
+
           {/* Left Form */}
           <div>
             <input
