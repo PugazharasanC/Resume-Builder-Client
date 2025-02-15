@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NotFound from "./Pages/NotFound";
 import LoginPage from "./Pages/LoginPage";
-import HomePage from "./Pages/HomePage";
-
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import CreateResume from "./pages/CreateResume";
 
 function App() {
+
+
   return (
     <Router>
       <Routes>

@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         // Fetch user data from backend
-        axios.get("http://localhost:5000/auth/user", { withCredentials: true })
+        axios.get("http://localhost:5500/auth/user", { withCredentials: true })
             .then(res => {
                 setUser(res.data); // Set user data
             })
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const logout = async () => {
-        await axios.get("http://localhost:5000/auth/logout", { withCredentials: true });
+        await axios.get("http://localhost:5500/auth/logout", { withCredentials: true });
         setUser(null);
     };
 
