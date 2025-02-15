@@ -8,7 +8,7 @@ const CreateResume = () => {
   const [showModal, setShowModal] = useState(false);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  if (user) {
+  if (!user) {
     navigate("/");
   }
   const [sections, setSections] = useState([]);
